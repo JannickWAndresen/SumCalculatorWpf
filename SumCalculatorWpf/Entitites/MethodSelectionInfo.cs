@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace SumCalculatorWpf.Entitites
 {
-    internal class MethodSelectionInfo
+    public class MethodSelectionInfo
     {
         public MethodSelectionInfo(double personnel, double culture, string criticality, int size, double dynanism) 
         {

@@ -6,6 +6,9 @@ MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SumCalculatorWpf", "SumCalculatorWpf\SumCalculatorWpf.csproj", "{21D37FA9-04BB-4918-BB30-630FA83D9E7A}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SumCalculatorWpfNUnit", "SumCalculatorWpfNUnit\SumCalculatorWpfNUnit.csproj", "{F439CBF9-A738-4101-9B50-D6283F52CBEB}"
+	ProjectSection(ProjectDependencies) = postProject
+		{21D37FA9-04BB-4918-BB30-630FA83D9E7A} = {21D37FA9-04BB-4918-BB30-630FA83D9E7A}
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
