@@ -2,6 +2,7 @@ using SumCalculatorWpf.Entitites;
 using System.Security.Cryptography.X509Certificates;
 using NUnit.Framework;
 using System.Collections;
+using SumCalculatorWpf.ApplicationLayer;
 
 namespace SumCalculatorWpfNUnit
 {
@@ -19,8 +20,8 @@ namespace SumCalculatorWpfNUnit
         {
             get
             {
-                yield return new TestCaseData(new MethodSelectionInfo(50.0, 70.0, "comfort", 10, 25.0)).SetName("tihi");
-                yield return new TestCaseData(new MethodSelectionInfo(50.0, 70.0, "danger", 10, 25.0)).SetName("fuck off");
+                yield return new TestCaseData(new MethodSelectionInfo(50.0, 70.0, "comfort", 10, 25.0)).Returns(1).SetName("Stop tihi");
+                yield return new TestCaseData(new MethodSelectionInfo(50.0, 70.0, "danger", 10, 25.0)).Returns(0).SetName("Don't fuck off");
             }
         }
         
@@ -37,9 +38,9 @@ namespace SumCalculatorWpfNUnit
         }
 
         [Test, TestCaseSource(nameof(TestCasesCalcMethod))]
-        public string MethodologiesTest()
+        public int MethodCalcTest(MethodSelectionInfo selectionInfo)
         {
-            Assert.That(methodSelectionInfo.Criticality, Is.EqualTo("comfort"));
+            return CalcMethod.CalculateMethodology();
         }
     }
 }
