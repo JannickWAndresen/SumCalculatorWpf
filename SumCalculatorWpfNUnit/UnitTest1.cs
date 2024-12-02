@@ -8,9 +8,10 @@ namespace SumCalculatorWpfNUnit
         }
 
         [Test]
-        public void Test1()
+        [TestCase(1, ExpectedResult = 3)]
+        public int MethodologiesTest(int methodSelectionInfo) 
         {
-            Assert.Pass();
+            return 0;
         }
     }
 }
