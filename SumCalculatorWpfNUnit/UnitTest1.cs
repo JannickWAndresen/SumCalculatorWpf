@@ -13,11 +13,12 @@ namespace SumCalculatorWpfNUnit
             selectionInfo = new MethodSelectionInfo(50.0,70.0,"comfort",10,25.0);
         }
 
+        
         [Test]
-        [TestCase(selectionInfo, ExpectedResult = 1)]
-        public int MethodologiesTest(MethodSelectionInfo methodSelectionInfo) 
+        public void MethodologiesTest() 
         {
-            return 0;
+            MethodSelectionInfo methodSelectInfo = new MethodSelectionInfo(50.0,70.0,"comfort",10,25.0);
+            Assert.That(methodSelectInfo, Is.EqualTo(selectionInfo)); 
         }
     }
 }
