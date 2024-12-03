@@ -21,7 +21,7 @@ namespace SumCalculatorWpfNUnit
             get
             {
                 yield return new TestCaseData(new MethodSelectionInfo(10, 30, "Essential Funds", 80, 30)).Returns(3).SetName("Stop tihi");
-                yield return new TestCaseData(new MethodSelectionInfo(50.0, 70.0, "danger", 10, 25.0)).Returns(0).SetName("Don't fuck off");
+                yield return new TestCaseData(new MethodSelectionInfo(50, 70, "danger", 10, 25)).Returns(0).SetName("Don't fuck off");
             }
         }
         

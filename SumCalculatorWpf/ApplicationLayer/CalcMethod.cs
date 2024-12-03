@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
+using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -43,20 +44,37 @@ namespace SumCalculatorWpf.ApplicationLayer
 
         static public int CalculateMethodology(MethodSelectionInfo methodInfo)
         {
-            var methodInt = (int mInt) => mInt switch
+            double personnelWeight = 1.4;
+            double cultureWeight = 1.2;
+            double criticalityWeight = 1.5;
+            double sizeWeight = 1.1;
+            double dynamismWeight = 1.3;
+
+
+            var methodInt = (double mDouble) => mDouble switch
             {
-                int i when i <= 5 && i <= 7 => 5,
-                int i when i <= 8 && i <= 12 => 4,
-                int i when i <= 13 && i <= 17 => 3,
-                int i when i <= 18 && i <= 22 => 2,
+                double i when i >= 5 && i <= 7 => 5,
+                double i when i >= 8 && i <= 12 => 4,
+                double i when i >= 13 && i <= 17 => 3,
+                double i when i >= 18 && i <= 22 => 2,
                 _ => 1
 
             };
-            int total = PersonnelMap[methodInfo.Personnel] +
-                CultureMap[methodInfo.Culture] +
-                CriticalityMap[methodInfo.Criticality] +
-                SizeMap[methodInfo.Size] +
-                DynamismMap[methodInfo.Dynamism];
+
+            double totalPersonnel = personnelWeight * PersonnelMap[methodInfo.Personnel];
+            double totalCulture = cultureWeight * CultureMap[methodInfo.Culture];
+            double totalCriticality = criticalityWeight * CriticalityMap[methodInfo.Criticality];
+            double totalSize = sizeWeight * SizeMap[methodInfo.Size];
+            double totalDynamism = dynamismWeight * DynamismMap[methodInfo.Dynamism];
+
+            double total =
+                totalPersonnel +
+                totalCulture +
+                totalCriticality +
+                totalSize +
+                totalDynamism;
+
+            Debug.WriteLine("Test: "+ methodInt(total));
 
             return methodInt(total);
         }
