@@ -25,7 +25,7 @@ namespace SumCalculatorWpf.Entitites
         public string Criticality { get; set; }
         public int Size { get; set; }
         public double Dynamism { get; set; }
-        public double SelectedFactoring { get; set; }
+        public int SelectedFactoring { get; set; }
 
         /*
         Personnel

@@ -40,9 +40,9 @@ namespace SumCalculatorWpf.ApplicationLayer
         static public int CalculateMethodology(MethodSelectionInfo methodInfo)
         {
             List<double> neutralWeights = new List<double>{1.4, 1.2, 1.5, 1.1, 1.3};
-            List<double> agileWeights = new List<double>{1.4, 1.3, 1.8, 1.2, 1.4};
+            //List<double> agileWeights = new List<double>{1.4, 1.3, 1.8, 1.2, 1.4};
+            List<double> agileWeights = new List<double> { 0.4, 0.3, 0.1, 0.2, 0.4 };
             List<double> structuredWeights = new List<double> {1.4, 1.1, 1.2, 1.0, 1.2};
-            double placeboTotal = 0;
 
             //double personnelWeight = 1.4;
             //double cultureWeight = 1.2;
@@ -58,9 +58,9 @@ namespace SumCalculatorWpf.ApplicationLayer
 
             var chooseFactoringList = (double intF) => intF switch
             {
-                double i when i == 1 => FactoringPicker(neutralWeights, placeboTotal),
-                double i when i == 2 => FactoringPicker(agileWeights, placeboTotal),
-                double i when i == 3 => FactoringPicker(structuredWeights, placeboTotal)
+                double i when i == 1 => FactoringPicker(neutralWeights, methodInfo),
+                double i when i == 2 => FactoringPicker(agileWeights, methodInfo),
+                double i when i == 3 => FactoringPicker(structuredWeights, methodInfo)
             };
             double total = chooseFactoringList(methodInfo.SelectedFactoring);
 
@@ -77,10 +77,17 @@ namespace SumCalculatorWpf.ApplicationLayer
 
             return methodInt(total);
         }
-        static public double FactoringPicker(List<double> factoringList, double total) 
+        static public double FactoringPicker(List<double> factoringList, MethodSelectionInfo methodInfo) 
         {
-            total = 
-            return 0.2;
+            double total = (PersonnelMap[methodInfo.Personnel] * factoringList[0]) + 
+                (CultureMap[methodInfo.Culture] * factoringList[1]) + 
+                (CriticalityMap[methodInfo.Criticality] * factoringList[2] +
+                (SizeMap[methodInfo.Size] * factoringList[3]) + 
+                (DynamismMap[methodInfo.Dynamism] * factoringList[4]));
+
+            Debug.WriteLine(total);
+
+            return total;
         }
     }
 }
