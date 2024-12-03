@@ -41,7 +41,8 @@ namespace SumCalculatorWpf.ApplicationLayer
         {
             List<double> neutralWeights = new List<double>{1.4, 1.2, 1.5, 1.1, 1.3};
             List<double> agileWeights = new List<double>{1.4, 1.3, 1.8, 1.2, 1.4};
-            List<double> structuredWeights = new List<double>();
+            List<double> structuredWeights = new List<double> {1.4, 1.1, 1.2, 1.0, 1.2};
+            double placeboTotal = 0;
 
             //double personnelWeight = 1.4;
             //double cultureWeight = 1.2;
@@ -49,11 +50,19 @@ namespace SumCalculatorWpf.ApplicationLayer
             //double sizeWeight = 1.1;
             //double dynamismWeight = 1.3;
 
-            double totalPersonnel = personnelWeight * PersonnelMap[methodInfo.Personnel];
-            double totalCulture = cultureWeight * CultureMap[methodInfo.Culture];
-            double totalCriticality = criticalityWeight * CriticalityMap[methodInfo.Criticality];
-            double totalSize = sizeWeight * SizeMap[methodInfo.Size];
-            double totalDynamism = dynamismWeight * DynamismMap[methodInfo.Dynamism];
+            //double totalPersonnel = personnelWeight * PersonnelMap[methodInfo.Personnel];
+            //double totalCulture = cultureWeight * CultureMap[methodInfo.Culture];
+            //double totalCriticality = criticalityWeight * CriticalityMap[methodInfo.Criticality];
+            //double totalSize = sizeWeight * SizeMap[methodInfo.Size];
+            //double totalDynamism = dynamismWeight * DynamismMap[methodInfo.Dynamism];
+
+            var chooseFactoringList = (double intF) => intF switch
+            {
+                double i when i == 1 => FactoringPicker(neutralWeights, placeboTotal),
+                double i when i == 2 => FactoringPicker(agileWeights, placeboTotal),
+                double i when i == 3 => FactoringPicker(structuredWeights, placeboTotal)
+            };
+            double total = chooseFactoringList(methodInfo.SelectedFactoring);
 
             var methodInt = (double mDouble) => mDouble switch
             {
@@ -65,14 +74,13 @@ namespace SumCalculatorWpf.ApplicationLayer
 
             };
 
-            double total =
-                totalPersonnel +
-                totalCulture +
-                totalCriticality +
-                totalSize +
-                totalDynamism;
 
             return methodInt(total);
+        }
+        static public double FactoringPicker(List<double> factoringList, double total) 
+        {
+            total = 
+            return 0.2;
         }
     }
 }

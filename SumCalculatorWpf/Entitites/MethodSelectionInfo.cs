@@ -9,13 +9,14 @@ namespace SumCalculatorWpf.Entitites
 {
     public class MethodSelectionInfo
     {
-        public MethodSelectionInfo(double personnel, double culture, string criticality, int size, double dynanism) 
+        public MethodSelectionInfo(double personnel, double culture, string criticality, int size, double dynanism, int selectedFactoring) 
         {
             this.Personnel = personnel;
             this.Culture = culture;
             this.Criticality = criticality;
             this.Size = size;
             this.Dynamism = dynanism;
+            this.SelectedFactoring = selectedFactoring;
         }
 
         
@@ -24,6 +25,7 @@ namespace SumCalculatorWpf.Entitites
         public string Criticality { get; set; }
         public int Size { get; set; }
         public double Dynamism { get; set; }
+        public double SelectedFactoring { get; set; }
 
         /*
         Personnel
