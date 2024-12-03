@@ -43,8 +43,22 @@ namespace SumCalculatorWpf.ApplicationLayer
 
         static public int CalculateMethodology(MethodSelectionInfo methodInfo)
         {
+            var methodInt = (int mInt) => mInt switch
+            {
+                int i when i <= 5 && i <= 7 => 5,
+                int i when i <= 8 && i <= 12 => 4,
+                int i when i <= 13 && i <= 17 => 3,
+                int i when i <= 18 && i <= 22 => 2,
+                _ => 1
 
-            return 0;
+            };
+            int total = PersonnelMap[methodInfo.Personnel] +
+                CultureMap[methodInfo.Culture] +
+                CriticalityMap[methodInfo.Criticality] +
+                SizeMap[methodInfo.Size] +
+                DynamismMap[methodInfo.Dynamism];
+
+            return methodInt(total);
         }
     }
 }
