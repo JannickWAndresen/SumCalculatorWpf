@@ -37,19 +37,23 @@ namespace SumCalculatorWpf.ApplicationLayer
             {50,1}, {30,2}, {10,3}, {5,4}, {1,5}
         };
 
-        static Dictionary<int, int> Methodologies = new Dictionary<int, int>()
-        {
-            {25, 1}, {20, 2}, {15, 3}, {10, 4}, {5, 5}
-        };
-
         static public int CalculateMethodology(MethodSelectionInfo methodInfo)
         {
-            double personnelWeight = 1.4;
-            double cultureWeight = 1.2;
-            double criticalityWeight = 1.5;
-            double sizeWeight = 1.1;
-            double dynamismWeight = 1.3;
+            List<double> neutralWeights = new List<double>{1.4, 1.2, 1.5, 1.1, 1.3};
+            List<double> agileWeights = new List<double>{1.4, 1.3, 1.8, 1.2, 1.4};
+            List<double> structuredWeights = new List<double>();
 
+            //double personnelWeight = 1.4;
+            //double cultureWeight = 1.2;
+            //double criticalityWeight = 1.5;
+            //double sizeWeight = 1.1;
+            //double dynamismWeight = 1.3;
+
+            double totalPersonnel = personnelWeight * PersonnelMap[methodInfo.Personnel];
+            double totalCulture = cultureWeight * CultureMap[methodInfo.Culture];
+            double totalCriticality = criticalityWeight * CriticalityMap[methodInfo.Criticality];
+            double totalSize = sizeWeight * SizeMap[methodInfo.Size];
+            double totalDynamism = dynamismWeight * DynamismMap[methodInfo.Dynamism];
 
             var methodInt = (double mDouble) => mDouble switch
             {
@@ -61,20 +65,12 @@ namespace SumCalculatorWpf.ApplicationLayer
 
             };
 
-            double totalPersonnel = personnelWeight * PersonnelMap[methodInfo.Personnel];
-            double totalCulture = cultureWeight * CultureMap[methodInfo.Culture];
-            double totalCriticality = criticalityWeight * CriticalityMap[methodInfo.Criticality];
-            double totalSize = sizeWeight * SizeMap[methodInfo.Size];
-            double totalDynamism = dynamismWeight * DynamismMap[methodInfo.Dynamism];
-
             double total =
                 totalPersonnel +
                 totalCulture +
                 totalCriticality +
                 totalSize +
                 totalDynamism;
-
-            Debug.WriteLine("Test: "+ methodInt(total));
 
             return methodInt(total);
         }

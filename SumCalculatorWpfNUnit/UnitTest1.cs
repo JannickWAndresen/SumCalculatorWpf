@@ -8,33 +8,15 @@ namespace SumCalculatorWpfNUnit
 {
     public class Tests
     {
-        public static IEnumerable TestCases 
-        {
-            get
-            {
-                yield return new TestCaseData(new MethodSelectionInfo(50.0, 70.0, "comfort", 10, 25.0)).SetName("tihi");
-                yield return new TestCaseData(new MethodSelectionInfo(50.0, 70.0, "danger", 10, 25.0)).SetName("fuck off");
-            }
-        }
         public static IEnumerable TestCasesCalcMethod 
         {
             get
             {
-                yield return new TestCaseData(new MethodSelectionInfo(10, 30, "Essential Funds", 80, 30)).Returns(3).SetName("Stop tihi");
-                yield return new TestCaseData(new MethodSelectionInfo(50, 70, "danger", 10, 25)).Returns(0).SetName("Don't fuck off");
+                yield return new TestCaseData(new MethodSelectionInfo(10, 30, "Essential Funds", 80, 30)).Returns(3).SetName("methodcalctest_calc_based_on_five_parameters_return_3_valid_value");
+                yield return new TestCaseData(new MethodSelectionInfo(50, 70, "danger", 10, 25)).Returns(0).SetName("methodcalctest_calc_based_on_five_parameters_return_0_invalid_value");
+                yield return new TestCaseData(new MethodSelectionInfo(40, 90, "Many Lives", 100, 1)).Returns(1).SetName("methodcalctest_calc_based_on_five_parameters_return_1_highest_values");
+                yield return new TestCaseData(new MethodSelectionInfo(0, 10, "Comfort", 10, 50)).Returns(5).SetName("methodcalctest_calc_based_on_five_parameters_return_5_lowest_values");
             }
-        }
-        
-        [SetUp]
-        public void Setup()
-        {
-        }
-
-        
-        [Test, TestCaseSource(nameof(TestCases))]
-        public void MethodologiesTest(MethodSelectionInfo methodSelectionInfo) 
-        {
-            Assert.That(methodSelectionInfo.Criticality, Is.EqualTo("comfort"));
         }
 
         [Test, TestCaseSource(nameof(TestCasesCalcMethod))]
