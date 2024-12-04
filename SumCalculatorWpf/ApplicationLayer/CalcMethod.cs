@@ -39,22 +39,9 @@ namespace SumCalculatorWpf.ApplicationLayer
 
         static public int CalculateMethodology(MethodSelectionInfo methodInfo)
         {
-            List<double> neutralWeights = new List<double>{1.4, 1.2, 1.5, 1.1, 1.3};
-            //List<double> agileWeights = new List<double>{1.4, 1.3, 1.8, 1.2, 1.4};
-            List<double> agileWeights = new List<double> { 0.4, 0.3, 0.1, 0.2, 0.4 };
-            List<double> structuredWeights = new List<double> {1.4, 1.1, 1.2, 1.0, 1.2};
-
-            //double personnelWeight = 1.4;
-            //double cultureWeight = 1.2;
-            //double criticalityWeight = 1.5;
-            //double sizeWeight = 1.1;
-            //double dynamismWeight = 1.3;
-
-            //double totalPersonnel = personnelWeight * PersonnelMap[methodInfo.Personnel];
-            //double totalCulture = cultureWeight * CultureMap[methodInfo.Culture];
-            //double totalCriticality = criticalityWeight * CriticalityMap[methodInfo.Criticality];
-            //double totalSize = sizeWeight * SizeMap[methodInfo.Size];
-            //double totalDynamism = dynamismWeight * DynamismMap[methodInfo.Dynamism];
+            List<double> neutralWeights = new List<double> { 1.4, 1.2, 1.5, 1.1, 1.3 };
+            List<double> agileWeights = new List<double> { 1.6, 1.5, 1.7, 1.3, 1.6 };
+            List<double> structuredWeights = new List<double> { 1.3, 1.0, 1.2, 1.0, 1.1 };
 
             var chooseFactoringList = (double intF) => intF switch
             {
@@ -62,19 +49,17 @@ namespace SumCalculatorWpf.ApplicationLayer
                 double i when i == 2 => FactoringPicker(agileWeights, methodInfo),
                 double i when i == 3 => FactoringPicker(structuredWeights, methodInfo)
             };
+
             double total = chooseFactoringList(methodInfo.SelectedFactoring);
 
             var methodInt = (double mDouble) => mDouble switch
             {
-                double i when i >= 5 && i <= 7 => 5,
-                double i when i >= 8 && i <= 12 => 4,
-                double i when i >= 13 && i <= 17 => 3,
-                double i when i >= 18 && i <= 22 => 2,
-                _ => 1
-
+                double i when i >= 5 && i <= 9 => 5,    // Agile
+                double i when i >= 10 && i <= 14 => 4,  //  |
+                double i when i >= 15 && i <= 19 => 3,  //  |
+                double i when i >= 20 && i <= 24 => 2,  //  V
+                _ => 1                                  // Structured
             };
-
-
             return methodInt(total);
         }
         static public double FactoringPicker(List<double> factoringList, MethodSelectionInfo methodInfo) 
