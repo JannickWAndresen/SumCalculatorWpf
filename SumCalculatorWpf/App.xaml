@@ -6,23 +6,42 @@
              StartupUri="MainWindow.xaml">
     <Application.Resources>
         <ResourceDictionary>
-            <Style x:Key="ModernButton" TargetType="Button">
-                <Setter Property="Background" Value="Black"/>
-                <Style.Triggers>
-                    <Trigger Property="IsMouseOver" Value="True">
-                        <Setter Property="fa:Awesome.Content" Value="Github"/>
-                    </Trigger>
-                </Style.Triggers>
-            </Style>
-            <Style x:Key="ModernButton" TargetType="fa:FontAwesome">
-                <Setter Property="Background" Value="Black"/>
-                <Style.Triggers>
-                    <Trigger Property="IsMouseOver" Value="True">
-                        <Setter Property="fa:Awesome.Content" Value="Github"/>
-                    </Trigger>
-                </Style.Triggers>
-            </Style>
+            <!--#region Control Templates-->
+            <ControlTemplate x:Key="FontAwesomeButton" TargetType="Button">
+                <Border Background="{TemplateBinding Background}"
+                        BorderBrush="{TemplateBinding BorderBrush}"
+                        BorderThickness="{TemplateBinding BorderThickness}"
+                        Padding="{TemplateBinding Padding}">
+                    <Grid>
+                        <fa:ImageAwesome x:Name="icon" 
+                                        Icon="Bars"
+                                        Height="20"
+                                        Width="20"
+                                        Foreground="{TemplateBinding Foreground}"
+                                        HorizontalAlignment="Center"
+                                        VerticalAlignment="Center"/>
+                    </Grid>
+                </Border>
 
+                <ControlTemplate.Triggers>
+                    <Trigger Property="IsMouseOver" Value="True">
+                        <Setter TargetName="icon" Property="Height" Value="23.5"/>
+                        <Setter TargetName="icon" Property="Width" Value="23.5"/>
+                    </Trigger>
+                    <Trigger Property="IsPressed" Value="True">
+                        <Setter TargetName="icon" Property="Opacity" Value="0.8"/>
+                        <Setter TargetName="icon" Property="Height" Value="20"/>
+                        <Setter TargetName="icon" Property="Width" Value="20"/>
+                    </Trigger>
+                </ControlTemplate.Triggers>
+            </ControlTemplate>
+            <!--#endregion-->
+            
+            <!--#region Styles-->
+            <Style x:Key="ModernButton" TargetType="Button">
+                <Setter Property="Template" Value="{StaticResource FontAwesomeButton}"/>
+            </Style>
+            <!--#endregion-->
         </ResourceDictionary>
     </Application.Resources>
 </Application>

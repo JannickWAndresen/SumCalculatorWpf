@@ -16,27 +16,19 @@
             <RowDefinition Height="60"/>
             <RowDefinition/>
         </Grid.RowDefinitions>
-        <Border Grid.Row="0" Grid.Column="0" Background="#34495e" BorderBrush="Red" Grid.ColumnSpan="2">
-            <Button Style="{StaticResource ModernButton}"
-                    fa:Awesome.Content="Bars" 
-                    HorizontalAlignment="Left" 
-                    Width="70" 
-                    FontSize="20" 
-                    Background="#34495e" 
-                    Foreground="White"
-                    BorderThickness="0">
-                <fa:Awesome Icon>
-                </fa:Awesome>
-            </Button>
-        </Border>
+        <Border Grid.Row="0" Grid.Column="0" Background="#34495e" Grid.ColumnSpan="2"></Border>
         <Border Grid.Row="0" Grid.Column="1" Background="#34495e"></Border>
-        <Border Grid.Row="1" Grid.Column="0" Background="#34495e">
-            <Button Style="{StaticResource ModernButton}"></Button>
-        </Border>
+        <Border Grid.Row="1" Grid.Column="0" Background="#34495e"></Border>
         <Border Grid.Row="1" Grid.Column="1"></Border>
-        <Grid>
-            
-        </Grid>
-
+        <Button Grid.Column="0" 
+                Grid.Row="0" 
+                Style="{StaticResource ModernButton}"
+                Width="70" 
+                FontSize="20" 
+                HorizontalAlignment="Left"
+                Background="#34495e" 
+                Foreground="White"
+                BorderThickness="0">
+        </Button>
     </Grid>
 </Window>
