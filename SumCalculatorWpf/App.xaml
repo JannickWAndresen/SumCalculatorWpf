@@ -7,22 +7,12 @@
     <Application.Resources>
         <ResourceDictionary>
             <Style x:Key="ModernButton" TargetType="Button">
-                <Setter Property="Background" Value="Black"/>
                 <Style.Triggers>
-                    <Trigger Property="IsMouseOver" Value="True">
-                        <Setter Property="fa:Awesome.Content" Value="Github"/>
+                    <Trigger Property="IsFocused" Value="True">
+                        <Setter Property="Background" Value="Green"/>
                     </Trigger>
                 </Style.Triggers>
             </Style>
-            <Style x:Key="ModernButton" TargetType="fa:FontAwesome">
-                <Setter Property="Background" Value="Black"/>
-                <Style.Triggers>
-                    <Trigger Property="IsMouseOver" Value="True">
-                        <Setter Property="fa:Awesome.Content" Value="Github"/>
-                    </Trigger>
-                </Style.Triggers>
-            </Style>
-
         </ResourceDictionary>
     </Application.Resources>
 </Application>
