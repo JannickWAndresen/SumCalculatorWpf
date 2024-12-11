@@ -9,26 +9,65 @@
         Title="MainWindow" Height="450" Width="800">
     <Grid>
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="250" />
             <ColumnDefinition/>
         </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
             <RowDefinition Height="60"/>
             <RowDefinition/>
         </Grid.RowDefinitions>
-        <Border Grid.Row="0" Grid.Column="0" Background="#34495e" Grid.ColumnSpan="2"></Border>
-        <Border Grid.Row="0" Grid.Column="1" Background="#34495e"></Border>
-        <Border Grid.Row="1" Grid.Column="0" Background="#34495e"></Border>
-        <Border Grid.Row="1" Grid.Column="1"></Border>
+
+        <Border Grid.Row="0"
+                Margin="0,0,0,-4"
+                Background="#1a66bc"></Border>
+        <Border Grid.Row="0"
+                Background="#34495e"></Border>
         <Button Grid.Column="0" 
-                Grid.Row="0" 
+                Grid.Row="0"
+                Margin="15,0,0,0"
                 Style="{StaticResource ModernButton}"
-                Width="70" 
-                FontSize="20" 
+                Width="35"
+                Height="30"
                 HorizontalAlignment="Left"
                 Background="#34495e" 
                 Foreground="White"
-                BorderThickness="0">
+                BorderThickness="0"
+                Panel.ZIndex="100" 
+                Click="SidbarButton_Click">
         </Button>
+        <Grid Grid.Row="1"
+              Margin="0,4,0,0">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition x:Name="MenuSidebar" 
+                                  Width="250"/>
+                <ColumnDefinition/>
+            </Grid.ColumnDefinitions>
+            <Border Grid.Row="0" Grid.Column="0" Background="#34495e" Panel.ZIndex="1">
+                <StackPanel x:Name="MenuPanel" Orientation="Vertical"
+                            Grid.Row="1">
+                    <ToggleButton x:Name="test" Style="{StaticResource ModernMenuButton}" 
+                                  Height="45"
+                                  Width="250"
+                                  Content="Hejsa"
+                                  FontWeight="Bold"
+                                  FontSize="18"
+                                  Foreground="White"
+                                  BorderThickness="0"
+                                  Background="#34495e" 
+                                  Click="MenuButton_Click">
+                    </ToggleButton>
+                    <ToggleButton x:Name="test2" Style="{StaticResource ModernMenuButton}"
+                              Height="45"
+                              Width="250"
+                              Content="Hejsa"
+                              FontWeight="Bold"
+                              FontSize="18"
+                              Foreground="White"
+                              BorderThickness="0"
+                              Background="#34495e"
+                              Click="MenuButton_Click">
+                    </ToggleButton>
+                </StackPanel>
+            </Border>
+        </Grid>
     </Grid>
 </Window>

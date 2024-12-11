@@ -7,6 +7,7 @@
     <Application.Resources>
         <ResourceDictionary>
             <!--#region Control Templates-->
+            <!--Custom Button for MenuBar-->
             <ControlTemplate x:Key="FontAwesomeButton" TargetType="Button">
                 <Border Background="{TemplateBinding Background}"
                         BorderBrush="{TemplateBinding BorderBrush}"
@@ -14,12 +15,12 @@
                         Padding="{TemplateBinding Padding}">
                     <Grid>
                         <fa:ImageAwesome x:Name="icon" 
-                                        Icon="Bars"
-                                        Height="20"
-                                        Width="20"
-                                        Foreground="{TemplateBinding Foreground}"
-                                        HorizontalAlignment="Center"
-                                        VerticalAlignment="Center"/>
+                                         Icon="Bars"
+                                         Height="20"
+                                         Width="20"
+                                         Foreground="{TemplateBinding Foreground}"
+                                         HorizontalAlignment="Center"
+                                         VerticalAlignment="Center"/>
                     </Grid>
                 </Border>
 
@@ -35,11 +36,49 @@
                     </Trigger>
                 </ControlTemplate.Triggers>
             </ControlTemplate>
+
+            <!--Custom Menu Button-->
+            <ControlTemplate x:Key="CustomMenuButton" TargetType="ToggleButton">
+                <Border x:Name="borderColor" Background="{TemplateBinding Background}"
+                        BorderBrush="{TemplateBinding BorderBrush}"
+                        BorderThickness="{TemplateBinding BorderThickness}"
+                        Padding="{TemplateBinding Padding}">
+                    <ContentPresenter x:Name="contentPresenter"
+                                      HorizontalAlignment="{TemplateBinding HorizontalAlignment}"
+                                      VerticalAlignment="Center"
+                                      Margin="{TemplateBinding Margin}"
+                                      Content="{TemplateBinding Content}">
+                    </ContentPresenter>
+                </Border>
+
+                <ControlTemplate.Triggers>
+                    <Trigger Property="IsMouseOver" Value="True">
+                        <Setter Property="Cursor" Value="Hand"/>
+                        <Setter TargetName="contentPresenter" Property="TextBlock.FontSize" Value="23.5"/>
+                    </Trigger>
+                    <Trigger Property="IsPressed" Value="True">
+                        <Setter Property="Opacity" Value="0.8"/>
+                    </Trigger>
+                    <Trigger Property="IsChecked" Value="True">
+                        <Setter TargetName="borderColor" Property="Background" Value="#1a66bc"/>
+                    </Trigger>
+                </ControlTemplate.Triggers>
+            </ControlTemplate>
             <!--#endregion-->
             
             <!--#region Styles-->
+            <!--Custom Button for MenuBar-->
             <Style x:Key="ModernButton" TargetType="Button">
                 <Setter Property="Template" Value="{StaticResource FontAwesomeButton}"/>
+            </Style>
+
+            <!--Custom Menu Button-->
+            <Style x:Key="ModernMenuButton" TargetType="ToggleButton">
+                <Setter Property="Template" Value="{StaticResource CustomMenuButton}"/>
+                <Setter Property="MaxHeight" Value="45"/>
+                <Setter Property="Height" Value="45"/>
+                <Setter Property="VerticalAlignment" Value="Center"/>
+                <Setter Property="HorizontalAlignment" Value="Center"/>
             </Style>
             <!--#endregion-->
         </ResourceDictionary>

@@ -1,6 +1,7 @@
 ﻿using System.Text;
 using System.Windows;
 using System.Windows.Controls;
+using System.Windows.Controls.Primitives;
 using System.Windows.Data;
 using System.Windows.Documents;
 using System.Windows.Input;
@@ -19,6 +20,36 @@ namespace SumCalculatorWpf
         public MainWindow()
         {
             InitializeComponent();
+        }
+
+        private void MenuButton_Click(object sender, RoutedEventArgs e)
+        {
+            // Get all buttons in the MenuPanel
+            var buttons = MenuPanel.Children.OfType<ToggleButton>();
+
+            var checkedButton = (ToggleButton)sender;
+
+            // Uncheck all other buttons
+            foreach (var button in buttons)
+            {
+                if (button != checkedButton)
+                {
+                    button.IsChecked = false;
+                    checkedButton.IsChecked = true;
+                }
+            }
+        }
+
+        private void SidbarButton_Click(object sender, RoutedEventArgs e)
+        {
+            GridLength tempGridLengthZero = new GridLength(0);
+            if(MenuSidebar.Width.Equals(tempGridLengthZero)) 
+            {
+                MenuSidebar.Width = new GridLength(250);
+                
+            }
+            MenuSidebar.Width = tempGridLengthZero;
+
         }
     }
 }
