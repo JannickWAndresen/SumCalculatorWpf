@@ -1,4 +1,5 @@
-﻿using System.Text;
+﻿using System.Diagnostics;
+using System.Text;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Controls.Primitives;
@@ -46,10 +47,9 @@ namespace SumCalculatorWpf
             if(MenuSidebar.Width.Equals(tempGridLengthZero)) 
             {
                 MenuSidebar.Width = new GridLength(250);
-                
+                return;
             }
             MenuSidebar.Width = tempGridLengthZero;
-
         }
     }
 }

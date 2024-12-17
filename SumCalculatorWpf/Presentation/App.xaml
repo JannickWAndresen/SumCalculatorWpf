@@ -3,10 +3,82 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:local="clr-namespace:SumCalculatorWpf"
              xmlns:fa="http://schemas.fontawesome.io/icons/"
-             StartupUri="MainWindow.xaml">
+             xmlns:b="http://schemas.microsoft.com/xaml/behaviors"
+             StartupUri="Views/LoginWindow.xaml">
     <Application.Resources>
         <ResourceDictionary>
             <!--#region Control Templates-->
+            <!--RoundedPasswordBox-->
+            <Style x:Key="RoundedPasswordBox" TargetType="PasswordBox">
+                <Setter Property="Template">
+                    <Setter.Value>
+                        <ControlTemplate TargetType="PasswordBox">
+                            <Border CornerRadius="10" 
+                                    Background="{TemplateBinding Background}"
+                                    BorderBrush="{TemplateBinding BorderBrush}"
+                                    BorderThickness="{TemplateBinding BorderThickness}">
+                                <ScrollViewer x:Name="PART_ContentHost" Margin="5,2"/>
+                            </Border>
+                        </ControlTemplate>
+                    </Setter.Value>
+                </Setter>
+            </Style>
+            
+            <!--ModernButton-->
+            <Style x:Key="RoundedButton" TargetType="Button">
+                <Setter Property="Template">
+                    <Setter.Value>
+                        <ControlTemplate TargetType="Button">
+                            <Border CornerRadius="10" 
+                                    Background="{TemplateBinding Background}"
+                                    BorderBrush="{TemplateBinding BorderBrush}"
+                                    BorderThickness="{TemplateBinding BorderThickness}">
+                                <ContentPresenter x:Name="contentPresenter"
+                                                  HorizontalAlignment="Center"
+                                                  VerticalAlignment="{TemplateBinding VerticalAlignment}"
+                                                  Margin="{TemplateBinding Margin}"
+                                                  Content="{TemplateBinding Content}">
+                                </ContentPresenter>
+                            </Border>
+                        </ControlTemplate>
+                    </Setter.Value>
+                </Setter>
+            </Style>
+
+            <!--PlaceholderTextBox-->
+            <ControlTemplate x:Key="TextBoxWithPrompt" TargetType="{x:Type TextBox}">
+                <Border x:Name="border" 
+                        Background="{TemplateBinding Background}"
+                        BorderBrush="{TemplateBinding BorderBrush}"
+                        BorderThickness="{TemplateBinding BorderThickness}"
+                        CornerRadius="10"
+                        SnapsToDevicePixels="True">
+                    <Grid>
+                        <ScrollViewer x:Name="PART_ContentHost"
+                                      Focusable="False"
+                                      HorizontalScrollBarVisibility="{TemplateBinding HorizontalScrollBarVisibility}"
+                                      VerticalScrollBarVisibility="{TemplateBinding VerticalScrollBarVisibility}"
+                                      Padding="{TemplateBinding Padding}"/>
+                        <TextBlock x:Name="placeholder"
+                                   Text="{TemplateBinding Tag}"
+                                   Foreground="Gray"
+                                   Margin="10,0,0,0"
+                                   VerticalAlignment="Center"
+                                   Visibility="Collapsed"/>
+                    </Grid>
+                </Border>
+
+                <ControlTemplate.Triggers>
+                    <MultiTrigger>
+                        <MultiTrigger.Conditions>
+                            <Condition Property="Text" Value=""/>
+                            <Condition Property="IsFocused" Value="False"/>
+                        </MultiTrigger.Conditions>
+                        <Setter Property="Visibility" TargetName="placeholder" Value="Visible"/>
+                    </MultiTrigger>
+                </ControlTemplate.Triggers>
+            </ControlTemplate>
+            
             <!--Custom Button for MenuBar-->
             <ControlTemplate x:Key="FontAwesomeButton" TargetType="Button">
                 <Border Background="{TemplateBinding Background}"
@@ -79,6 +151,15 @@
                 <Setter Property="Height" Value="45"/>
                 <Setter Property="VerticalAlignment" Value="Center"/>
                 <Setter Property="HorizontalAlignment" Value="Center"/>
+            </Style>
+            
+            <!--Custom TextBox (With prompts)-->
+            <Style x:Key="TextBoxPrompt" TargetType="TextBox">
+                <Setter Property="Template" Value="{StaticResource TextBoxWithPrompt}"/>
+                <Setter Property="Height" Value="35"/>
+                <Setter Property="MaxWidth" Value="225"/>
+                <Setter Property="VerticalContentAlignment" Value="Center"/>
+                <Setter Property="Padding" Value="10,0,10,0"/>
             </Style>
             <!--#endregion-->
         </ResourceDictionary>
