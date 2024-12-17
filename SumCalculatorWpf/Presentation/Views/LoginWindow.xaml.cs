@@ -35,6 +35,11 @@ namespace SumCalculatorWpf.Presentation.Views
         {
             var hashedBytes = SHA256.HashData(Encoding.UTF8.GetBytes("hej"));
             Debug.WriteLine(BitConverter.ToString(hashedBytes).Replace("-","").ToLower());
+
+            MainWindow mainWindow = new MainWindow();
+            mainWindow.Show();
+
+            Window.GetWindow(this).Close();
         }
 
         private void Border_MouseDown(object sender, MouseButtonEventArgs e)
