@@ -54,11 +54,11 @@ namespace SumCalculatorWpf.ApplicationLayer
 
             var methodInt = (double mDouble) => mDouble switch
             {
-                double i when i >= 5 && i <= 9 => 5,    // Agile
+                double i when i >= 5 && i <= 9 => 5,    // Structured
                 double i when i >= 10 && i <= 14 => 4,  //  |
                 double i when i >= 15 && i <= 19 => 3,  //  |
                 double i when i >= 20 && i <= 24 => 2,  //  V
-                _ => 1                                  // Structured
+                _ => 1                                  // Agile
             };
             return methodInt(total);
         }
