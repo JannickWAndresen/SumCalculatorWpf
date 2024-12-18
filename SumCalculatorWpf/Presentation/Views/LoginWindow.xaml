@@ -61,7 +61,7 @@
                         Content="Login"
                         FontSize="16"
                         FontWeight="Bold"
-                        Margin="0,5,0,0" Click="btnLogIn_Click"/>
+                        Margin="0,5,0,0" Click="BtnLogIn_Click"/>
             </StackPanel>
         </Grid>
     </Border>

@@ -18,7 +18,6 @@
 
   <ItemGroup>
     <Folder Include="Interface-Adapters\" />
-    <Folder Include="Infrastructure\" />
   </ItemGroup>
 
   <ItemGroup>

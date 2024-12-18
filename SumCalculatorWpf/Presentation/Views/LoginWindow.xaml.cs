@@ -1,4 +1,5 @@
-﻿using System;
+﻿using SumCalculatorWpf.Infrastructure;
+using System;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
@@ -31,15 +32,29 @@ namespace SumCalculatorWpf.Presentation.Views
             Window.GetWindow(this).Close();
         }
 
-        private void btnLogIn_Click(object sender, RoutedEventArgs e)
+        private async void BtnLogIn_Click(object sender, RoutedEventArgs e)
         {
-            var hashedBytes = SHA256.HashData(Encoding.UTF8.GetBytes("hej"));
-            Debug.WriteLine(BitConverter.ToString(hashedBytes).Replace("-","").ToLower());
+            //var hashedBytes = SHA256.HashData(Encoding.UTF8.GetBytes("hej"));
+            //Debug.WriteLine(BitConverter.ToString(hashedBytes).Replace("-","").ToLower());
 
-            MainWindow mainWindow = new MainWindow();
-            mainWindow.Show();
+            try
+            {
+                bool loginSuccess = await CurrentUserSession.LogIn(tbEmail.Text, pbPassword.Password);
 
-            Window.GetWindow(this).Close();
+                if (loginSuccess)
+                {
+                    MainWindow mainWindow = new MainWindow();
+                    mainWindow.Show();
+                    Window.GetWindow(this).Close();
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Login failed. Please check your credentials.",
+                    "FUCK YOU!",
+                    MessageBoxButton.YesNo,
+                    MessageBoxImage.Warning);
+            }
         }
 
         private void Border_MouseDown(object sender, MouseButtonEventArgs e)
