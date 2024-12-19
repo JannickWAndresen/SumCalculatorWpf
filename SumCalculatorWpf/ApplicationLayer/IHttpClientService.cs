@@ -10,5 +10,6 @@ namespace SumCalculatorWpf.ApplicationLayer
     {
         Task<T> GetAsync<T>(string url);
         Task<T> PostAsync<T>(string url, object data);
+        Task<T> DeleteAsync<T>(string url, string id);
     }
 }

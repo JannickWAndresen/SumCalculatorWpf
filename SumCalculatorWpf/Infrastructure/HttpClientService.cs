@@ -8,6 +8,7 @@ using System.Net.Http;
 using System.Text;
 using System.Text.Json;
 using System.Threading.Tasks;
+using System.Windows.Documents;
 
 namespace SumCalculatorWpf.Infrastructure
 {
@@ -24,9 +25,20 @@ namespace SumCalculatorWpf.Infrastructure
             }
         }
 
-        public Task<T> GetAsync<T>(string url)
+        public async Task<T> DeleteAsync<T>(string url, string id)
         {
-            throw new NotImplementedException();
+            var response = await _client.DeleteAsync($"{url}/{id}");
+            var responseContent = await response.Content.ReadAsStringAsync();
+
+            return JsonSerializer.Deserialize<T>(responseContent);
+        }
+
+        public async Task<T> GetAsync<T>(string url)
+        {
+            var response = await _client.GetAsync(url);
+            var responseContent = await response.Content.ReadAsStringAsync();
+
+            return JsonSerializer.Deserialize<T>(responseContent);
         }
 
         public async Task<T> PostAsync<T>(string url, object data)

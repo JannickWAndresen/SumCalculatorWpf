@@ -69,6 +69,40 @@
                     </ToggleButton>
                 </StackPanel>
             </Border>
+            <Grid Grid.Column="1">
+                <Grid.RowDefinitions>
+                    <RowDefinition></RowDefinition>
+                    <RowDefinition Height="75"></RowDefinition>
+                </Grid.RowDefinitions>
+
+                <ListView Grid.Row="0" 
+                          x:Name="usersListView"
+                          Height="Auto"
+                          Width="Auto"
+                          Margin="10,10,10,10"
+                          BorderThickness="2"
+                          ItemsSource="{Binding usersViewModel}">
+                </ListView>
+                <Grid Grid.Row="1">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition></ColumnDefinition>
+                        <ColumnDefinition></ColumnDefinition>
+                    </Grid.ColumnDefinitions>
+                    <Button Grid.Column="0"
+                            Width="75"
+                            Height="35"
+                            Content="Delete"
+                            FontSize="16"
+                            FontWeight="Bold"></Button>
+                    <Button Grid.Column="1" 
+                            Width="75"
+                            Height="35"
+                            Content="Edit"
+                            FontSize="16"
+                            FontWeight="Bold"></Button>
+                </Grid>
+            </Grid>
+            
         </Grid>
     </Grid>
 </Window>

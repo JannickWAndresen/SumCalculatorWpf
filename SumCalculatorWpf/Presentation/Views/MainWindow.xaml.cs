@@ -1,4 +1,5 @@
-﻿using System.Diagnostics;
+﻿using SumCalculatorWpf.Presentation.ViewModels;
+using System.Diagnostics;
 using System.Text;
 using System.Windows;
 using System.Windows.Controls;
@@ -18,9 +19,15 @@ namespace SumCalculatorWpf
     /// </summary>
     public partial class MainWindow : Window
     {
+        public UsersViewModel usersViewModel;
         public MainWindow()
         {
             InitializeComponent();
+            usersViewModel = new UsersViewModel();
+
+            
+
+            
         }
 
         private void MenuButton_Click(object sender, RoutedEventArgs e)
