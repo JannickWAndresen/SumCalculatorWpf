@@ -25,12 +25,15 @@ namespace SumCalculatorWpf.Infrastructure
             }
         }
 
-        public async Task<T> DeleteAsync<T>(string url, string id)
+        public async Task<string> DeleteAsync<T>(string url, string id)
         {
-            var response = await _client.DeleteAsync($"{url}/{id}");
+            string fullUri = url + "/" + id;
+            var response = await _client.DeleteAsync(fullUri);
+            Debug.WriteLine("message after ReadAsStringAsync()");
             var responseContent = await response.Content.ReadAsStringAsync();
+            Debug.WriteLine(responseContent);
 
-            return JsonSerializer.Deserialize<T>(responseContent);
+            return responseContent;
         }
 
         public async Task<T> GetAsync<T>(string url)
@@ -49,8 +52,6 @@ namespace SumCalculatorWpf.Infrastructure
             var response = await _client.PostAsync(url, content);
 
             var responseContent = await response.Content.ReadAsStringAsync();
-
-            Debug.WriteLine(responseContent);
 
             return JsonSerializer.Deserialize<T>(responseContent);
         }

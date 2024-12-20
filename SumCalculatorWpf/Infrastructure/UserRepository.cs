@@ -9,9 +9,9 @@ using System.Threading.Tasks;
 
 namespace SumCalculatorWpf.Infrastructure
 {
-    internal class UserRepository : IUserService
+    public class UserRepository : IUserService
     {
-        public async Task DeleteUserAsync(string userId)
+        public async virtual Task DeleteUser(string userId)
         {
             HttpClientService service = new HttpClientService();
             try
@@ -24,26 +24,27 @@ namespace SumCalculatorWpf.Infrastructure
             }
         }
 
-        public Task GetAllUsersAsync()
+        public async Task<List<UserInfo>> GetAllUsers()
         {
             HttpClientService service = new HttpClientService();
             try
             {
-                var response = service.GetAsync<object>("https://localhost:7214/api/users");
+                return await service.GetAsync<List<UserInfo>>("https://localhost:7214/api/users");
 
             }
             catch
             {
                 Debug.WriteLine("error happened while trying to delete!");
+                return new List<UserInfo>();
             }
         }
 
-        public Task GetUserByIdAsync(string userId)
+        public virtual Task GetUserById(string userId)
         {
             throw new NotImplementedException();
         }
 
-        public Task UpdateUserAsync(UserInfo user)
+        public virtual Task UpdateUser(UserInfo user)
         {
             throw new NotImplementedException();
         }

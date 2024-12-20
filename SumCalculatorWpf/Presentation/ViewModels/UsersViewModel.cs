@@ -1,45 +1,72 @@
 ﻿using SumCalculatorWpf.ApplicationLayer;
 using SumCalculatorWpf.Entitites;
+using SumCalculatorWpf.Infrastructure;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.ComponentModel;
+using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
 namespace SumCalculatorWpf.Presentation.ViewModels
 {
-    public class UsersViewModel
+    public class UsersViewModel : INotifyPropertyChanged
     {
-        private readonly IUserService _userService;
-        public ObservableCollection<UserInfo> UserList { get; private set; }
+        private readonly UserRepository userService = new();
 
-        public async Task DeleteUserAsync(string id)
+        private ObservableCollection<UserInfo> _users;
+        public ObservableCollection<UserInfo> Users
         {
-            await _userService.DeleteUserAsync(id);
-            var userToRemove = UserList.FirstOrDefault(x => x.Id == id);
-            if (userToRemove != null)
+            get => _users;
+            set
             {
-                UserList.Remove(userToRemove);
+                _users = value;
+                OnPropertyChanged(nameof(Users));
             }
         }
 
-        public async Task UpdateUserAsync(UserInfo user)
+        public UsersViewModel()
         {
-            await _userService.UpdateUserAsync(user);
-            var userToUpdate = UserList.FirstOrDefault(x => x.Id == user.Id);
+            Users = new ObservableCollection<UserInfo>();
+        }
+
+        public async Task DeleteUser(string id)
+        {
+            await userService.DeleteUser(id);
+            var userToRemove = Users.FirstOrDefault(x => x.Id == id);
+            if (userToRemove != null)
+            {
+                Users.Remove(userToRemove);
+            }
+        }
+
+        public async Task UpdateUser(UserInfo user)
+        {
+            await userService.UpdateUser(user);
+            var userToUpdate = Users.FirstOrDefault(x => x.Id == user.Id);
             if (userToUpdate != null)
             {
-                UserList.Remove(userToUpdate);
-                UserList.Add(userToUpdate);
+                Users.Remove(userToUpdate);
+                Users.Add(userToUpdate);
             }
         }
 
         public async Task GetAllUsers()
         {
-            var users = await _userService.GetAllUsersAsync();
-            var users = new ObservableCollection<UserInfo>();
+            Users.Clear();
+            var items = await userService.GetAllUsers();
+            foreach (var item in items)
+            {
+                Users.Add(item);
+            }
+        }
 
+        public event PropertyChangedEventHandler? PropertyChanged;
+        protected virtual void OnPropertyChanged(string propertyName)
+        {
+            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
         }
     }
 }

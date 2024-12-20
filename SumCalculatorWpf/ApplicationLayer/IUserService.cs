@@ -9,9 +9,9 @@ namespace SumCalculatorWpf.ApplicationLayer
 {
     internal interface IUserService
     {
-        Task DeleteUserAsync(string userId);
-        Task UpdateUserAsync(UserInfo user);
-        Task GetAllUsersAsync();
-        Task GetUserByIdAsync(string userId);
+        Task DeleteUser(string userId);
+        Task UpdateUser(UserInfo user);
+        Task<List<UserInfo>> GetAllUsers();
+        Task GetUserById(string userId);
     }
 }

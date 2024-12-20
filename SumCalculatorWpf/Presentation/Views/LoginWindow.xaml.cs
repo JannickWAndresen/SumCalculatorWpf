@@ -51,7 +51,7 @@ namespace SumCalculatorWpf.Presentation.Views
             catch (Exception ex)
             {
                 MessageBox.Show("Login failed. Please check your credentials.",
-                    "FUCK YOU!",
+                    "Login error",
                     MessageBoxButton.YesNo,
                     MessageBoxImage.Warning);
             }

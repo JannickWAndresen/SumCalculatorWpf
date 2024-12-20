@@ -1,4 +1,5 @@
-﻿using SumCalculatorWpf.Presentation.ViewModels;
+﻿using SumCalculatorWpf.Entitites;
+using SumCalculatorWpf.Presentation.ViewModels;
 using System.Diagnostics;
 using System.Text;
 using System.Windows;
@@ -24,10 +25,9 @@ namespace SumCalculatorWpf
         {
             InitializeComponent();
             usersViewModel = new UsersViewModel();
+            DataContext = usersViewModel;
 
-            
-
-            
+            usersViewModel.GetAllUsers();
         }
 
         private void MenuButton_Click(object sender, RoutedEventArgs e)
@@ -57,6 +57,15 @@ namespace SumCalculatorWpf
                 return;
             }
             MenuSidebar.Width = tempGridLengthZero;
+        }
+
+        private void Button_Click_Delete(object sender, RoutedEventArgs e)
+        {
+            if (usersListView.SelectedItems[0] is UserInfo selectedUser)
+            {
+                Debug.WriteLine(selectedUser.Username);
+                usersViewModel.DeleteUser(selectedUser.Id);
+            }
         }
     }
 }

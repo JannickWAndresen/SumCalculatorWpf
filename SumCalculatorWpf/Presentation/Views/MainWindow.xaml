@@ -81,7 +81,53 @@
                           Width="Auto"
                           Margin="10,10,10,10"
                           BorderThickness="2"
-                          ItemsSource="{Binding usersViewModel}">
+                          ItemsSource="{Binding Users}">
+                    <ListView.View>
+                        <GridView>
+                            <GridViewColumn Header="ID" Width="80">
+                                <GridViewColumn.CellTemplate>
+                                    <DataTemplate>
+                                        <TextBlock Text="{Binding Id}"/>
+                                    </DataTemplate>
+                                </GridViewColumn.CellTemplate>
+                            </GridViewColumn>
+                            <GridViewColumn Header="Username" Width="120">
+                                <GridViewColumn.CellTemplate>
+                                    <DataTemplate>
+                                        <TextBlock Text="{Binding Username}"/>
+                                    </DataTemplate>
+                                </GridViewColumn.CellTemplate>
+                            </GridViewColumn>
+                            <GridViewColumn Header="Email" Width="180">
+                                <GridViewColumn.CellTemplate>
+                                    <DataTemplate>
+                                        <TextBlock Text="{Binding Email}"/>
+                                    </DataTemplate>
+                                </GridViewColumn.CellTemplate>
+                            </GridViewColumn>
+                            <GridViewColumn Header="Company" Width="150">
+                                <GridViewColumn.CellTemplate>
+                                    <DataTemplate>
+                                        <TextBlock Text="{Binding CompanyName}"/>
+                                    </DataTemplate>
+                                </GridViewColumn.CellTemplate>
+                            </GridViewColumn>
+                            <GridViewColumn Header="First Name" Width="120">
+                                <GridViewColumn.CellTemplate>
+                                    <DataTemplate>
+                                        <TextBlock Text="{Binding FirstName}"/>
+                                    </DataTemplate>
+                                </GridViewColumn.CellTemplate>
+                            </GridViewColumn>
+                            <GridViewColumn Header="Last Name" Width="120">
+                                <GridViewColumn.CellTemplate>
+                                    <DataTemplate>
+                                        <TextBlock Text="{Binding LastName}"/>
+                                    </DataTemplate>
+                                </GridViewColumn.CellTemplate>
+                            </GridViewColumn>
+                        </GridView>
+                    </ListView.View>
                 </ListView>
                 <Grid Grid.Row="1">
                     <Grid.ColumnDefinitions>
@@ -93,7 +139,7 @@
                             Height="35"
                             Content="Delete"
                             FontSize="16"
-                            FontWeight="Bold"></Button>
+                            FontWeight="Bold" Click="Button_Click_Delete"></Button>
                     <Button Grid.Column="1" 
                             Width="75"
                             Height="35"
@@ -102,7 +148,6 @@
                             FontWeight="Bold"></Button>
                 </Grid>
             </Grid>
-            
         </Grid>
     </Grid>
 </Window>
